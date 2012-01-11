@@ -13,5 +13,9 @@ describe CodeBreakerSimulator do
     it "YVOC returns color 0, place 0" do
       subject.evaluate_guess(:yellow, :violet, :orange, :chartreuse).should == { color: 0, place: 0 }
     end
+
+    it "RGBY returns color 3, place 3" do
+      subject.evaluate_guess(:red, :green, :blue, :yellow).should == { color: 3, place: 3 }
+    end
   end
 end

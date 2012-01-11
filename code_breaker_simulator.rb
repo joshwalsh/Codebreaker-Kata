@@ -2,9 +2,25 @@ class CodeBreakerSimulator
   Code = [:red, :green, :blue, :pink]
 
   def evaluate_guess(*colors)
-    return { color: 4, place: 4 } if colors == Code
-    return { color: 0, place: 0 } if (colors & Code).size == 0
+    matched_color_count = count_correct_colors(colors)
+    matched_places = count_matched_places(colors)
 
-    { color: 4, place: 0 }
+    { color: matched_color_count, place: matched_places }
+  end
+
+  private
+
+  def count_correct_colors(colors)
+    (Code & colors).size
+  end
+
+  def count_matched_places(colors)
+    matched_places = 0
+
+    colors.each_with_index do |color, index|
+      matched_places += 1 if color == Code[index]
+    end
+
+    matched_places
   end
 end
