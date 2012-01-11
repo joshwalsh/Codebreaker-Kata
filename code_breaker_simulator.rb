@@ -1,10 +1,9 @@
 class CodeBreakerSimulator
-  def evaluate_guess(*colors)
-    code = [:red, :green, :blue, :pink]
+  Code = [:red, :green, :blue, :pink]
 
-    if colors == code
-      return { color: 4, place: 4 }
-    end 
+  def evaluate_guess(*colors)
+    return { color: 4, place: 4 } if colors == Code
+    return { color: 0, place: 0 } if (colors & Code).size == 0
 
     { color: 4, place: 0 }
   end
